@@ -28,9 +28,8 @@ public class DepthOnly : ScriptableRendererFeature
 
 		public override void Configure(CommandBuffer cmd, RenderTextureDescriptor cameraTextureDescriptor)
 		{
-			ConfigureClear(ClearFlag.All, Color.clear);
 			ConfigureTarget(new RenderTargetIdentifier(rt));
-			
+			ConfigureClear(ClearFlag.Depth, Color.clear);
 		}
 		// This method is called before executing the render pass.
 		// It can be used to configure render targets and their clear state. Also to create temporary render target textures.
@@ -84,6 +83,10 @@ public class DepthOnly : ScriptableRendererFeature
 				cmd.Clear();
 				context.DrawRenderers(cullingResults, ref drawingSettings, ref m_FilteringSettings,ref renderStateBlock);
 			}
+			cmd.SetViewProjectionMatrices(
+						renderingData.cameraData.camera.worldToCameraMatrix,
+						renderingData.cameraData.camera.projectionMatrix);
+			context.ExecuteCommandBuffer(cmd);
 			CommandBufferPool.Release(cmd);
 		}
 
