@@ -105,7 +105,7 @@ Material:
     - _DistortionSpeed: 0.17
     - _DstBlend: 0
     - _Edge: 0.00332
-    - _EdgeShadowLight: 0
+    - _EdgeShadowLight: 0.322
     - _EnvironmentReflections: 1
     - _Float: 90
     - _GlossMapScale: 0
